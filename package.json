@@ -1,0 +1,31 @@
+{
+  "name": "spectrelauncher",
+  "productName": "Spectre Launcher",
+  "version": "1.0.0",
+  "description": "Launcher Minecraft du Spectre Client",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "LaCarotteBleue",
+  "devDependencies": {
+    "electron": "^9.0.0",
+    "electron-builder": "^22.7.0"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "custom-electron-titlebar": "^3.2.6",
+    "izitoast": "^1.4.0",
+    "minecraft-launcher-core": "^3.14.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/L-C-B/SpectreLauncher.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/L-C-B/SpectreLauncher/issues"
+  },
+  "homepage": "https://github.com/L-C-B/SpectreLauncher#readme"
+}
