@@ -45,12 +45,6 @@ ipcMain.on("login", (evt, data) =>{
   }).catch(() => {
     evt.sender.send("err", "Identifiants invalides");
   });
-});
-ipcMain.on("login", (evt, data) =>{
-if(data.user && data.pass == "a") {
-  mainWindow.loadURL(path.join(__dirname, "assets/app/app.html"))
-
-}
 })
 ipcMain.on("loginToken", (evt, data) =>{
   Authenticator.refreshAuth(data.access_token, data.client_token)
