@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
@@ -32,6 +31,7 @@
 
  const ipc = require("electron").ipcRenderer;
  const custombar = require("custom-electron-titlebar");
+ const iziToast = require('izitoast')
 
 
  let bar = new custombar.Titlebar({
@@ -95,102 +95,4 @@
 
     </script>
   </body>
-=======
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="app.css" />  
-    <link rel="stylesheet" href="toast/toast.css" />
-    <script src="toast/toast.js"></script>
-    <title>Spectre Launcher - App</title>
-    
-  </head>
-  <body>
-    
-    <form>
-      <h1></h1>
-      <h1 id= "box"></h1>
-<div class="button-box">
-    <button id="site" class="button">SITE WEB</button>
-    <button id="discord" class="button" >DISCORD</button>
-    
-    <button id="deco">DÉCONNEXION</button>
-    <img src="https://minotar.net/avatar/MHF_Steve/100.png" id="skin" /><br />
-    <img src="images/background.png" id="background" /><br />
-    <img src="images/logo.png" id="logo" /><br />
-    <button id="play" class="button">LANCER LE JEU</button>
-    <button id="settings" class="button">OPTIONS</button>
-
-    </div>
-    
-<script>
-
- const ipc = require("electron").ipcRenderer;
- const custombar = require("custom-electron-titlebar");
-
-
- let bar = new custombar.Titlebar({
-    menu: null,
-    backgroundColor: custombar.Color.fromHex("#161616"),
-    maximizable : false
-  });
-  iziToast.success({
-    message: 'Connexion réussie !',
-});
-
-     // Variables globales
-     let pseudo = document.getElementById("pseudo");
-      let skin = document.getElementById("skin");
-      let deco = document.getElementById("deco");
-      let playbtn = document.getElementById("playbtn");
-      let ram = document.getElementById("ram");
-      let progress = document.querySelector(".progress-done");
- 
-      // Modal
-      var modal = document.getElementById("optionMenu");
-      var span = document.getElementsByClassName("close")[0];
-      document.getElementById("options").addEventListener("click", () => {
-        modal.style.display = "block";
-      });
-      span.onclick = function () {
-        modal.style.display = "none";
-      };
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
- 
-      // Fonction de progressbar
-      function setProgress(text, ratio = 1) {
-        progress.style.width = ratio * 100 + "%";
-        if (ratio >= 0.2) {
-          progress.innerHTML = `Chargement des ${text} en cours !`;
-        } else {
-          progress.innerHTML = "";
-        }
-        progress.style.opacity = 1;
-      }
- 
-      // Fonction de Snackbar
-      function snack(txt) {
-        snackbar.innerHTML = txt;
-        snackbar.classList.add("show");
-        setTimeout(() => {
-          snackbar.classList.remove("show");
-        }, 3000);
-      }
- 
-      ipc.on("user",(evt, user) => {
-        pseudo.innerHTML = user.name;
-        skin.src = `https://minotar.net/avatar/${user.name}/100.png`;
-        localStorage.setItem("user", JSON.stringify(user));
-      });
-     
-
-    </script>
-  </body>
->>>>>>> adde48d070bcd05813888d8a0b67c7d5c9ee49f3
-</html>
+  </html>
