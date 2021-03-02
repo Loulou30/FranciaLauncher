@@ -6,7 +6,6 @@ Bienvenue sur le GitHub du Spectre Launcher ! Ce Launcher a été conçu spécia
 J'ai conçu ce Launcher grâce au tutoriel de [SlashDev](https://slashdev.eu/) avec [Electron.js](https://www.electronjs.org/). La version actuel du Launcher est la 1.0.
 
 ## Spectre Client
-<p align="center"><img src="assets/app/images/logo.png" width="150px" height="150px"></p>
 
 Le Spectre Client est un Client Minecraft pour tout type de joueurs (À part les cheaters). Le Client est en développement mais vous pouvez tout de même rejoindre le [Discord](https://discord.gg/qHwGDUN) de ce dernier pour ne manquer aucune mise à jour !
 
