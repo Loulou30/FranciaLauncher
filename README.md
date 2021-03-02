@@ -1,4 +1,4 @@
-# Spectre Launcher
+<h1 align="center">Spectre Launcher</h1>
 
 ## Introduction
 
