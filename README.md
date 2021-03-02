@@ -7,5 +7,5 @@ J'ai conçu ce Launcher grâce au tutoriel de [SlashDev](https://slashdev.eu/) a
 
 ## Spectre Client
 
-Le Spectre Client est un Client Minecraft pour tout type de joueurs (À part les cheaters). Le Client est en développement mais vous pouvez tout de même rejoindre le [Discord](https://discord.gg/qHwGDUN) de ce dernier pour ne manquer aucune mise à jour !
+Le **Spectre Client** est un **Client Minecraft** pour tout type de joueurs (À part les cheaters). Le Client est en **développement** mais vous pouvez tout de même rejoindre le [Discord](https://discord.gg/qHwGDUN) de ce dernier pour ne manquer aucune mise à jour !
 
