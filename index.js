@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const { app, ipcMain, BrowserWindow } = require("electron");
 const path = require("path");
 const { Client, Authenticator } = require("minecraft-launcher-core");
@@ -139,5 +138,3 @@ ipcMain.on("logout", (evt, user) =>{
   });
 });
 
-
->>>>>>> adde48d070bcd05813888d8a0b67c7d5c9ee49f3
