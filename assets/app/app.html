@@ -51,46 +51,17 @@
       let ram = document.getElementById("ram");
       let progress = document.querySelector(".progress-done");
  
-      // Modal
-      var modal = document.getElementById("optionMenu");
-      var span = document.getElementsByClassName("close")[0];
-      document.getElementById("options").addEventListener("click", () => {
-        modal.style.display = "block";
-      });
-      span.onclick = function () {
-        modal.style.display = "none";
-      };
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
- 
-      // Fonction de progressbar
-      function setProgress(text, ratio = 1) {
-        progress.style.width = ratio * 100 + "%";
-        if (ratio >= 0.2) {
-          progress.innerHTML = `Chargement des ${text} en cours !`;
-        } else {
-          progress.innerHTML = "";
-        }
-        progress.style.opacity = 1;
-      }
- 
-      // Fonction de Snackbar
-      function snack(txt) {
-        snackbar.innerHTML = txt;
-        snackbar.classList.add("show");
-        setTimeout(() => {
-          snackbar.classList.remove("show");
-        }, 3000);
-      }
- 
-      ipc.on("user",(evt, user) => {
+         ipc.on("user",(evt, user) => {
         pseudo.innerHTML = user.name;
         skin.src = `https://minotar.net/avatar/${user.name}/100.png`;
         localStorage.setItem("user", JSON.stringify(user));
       });
+      deco.addEventListener("click", () => {
+        ipc.send("logout", JSON.parse(localStorage.getItem("user")));
+        localStorage.clear();
+        console.log('Déconnexion')
+      });
+ 
      
 
     </script>
