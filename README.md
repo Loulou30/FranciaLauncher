@@ -19,9 +19,9 @@ Mais, il est interdit de copier & coller le code du Launcher. Si vous voulez en 
 ## ・Développement
 
 Pour commencer à développer votre Launcher en vous servant de celui-là (Le JavaScript) ouvrez votre Invite de commandes et entrez ces commandes.
-`git clone https://github.com/L-C-B/SpectreLauncher Launcher`
-`cd Launcher`
-`npm install`
-`npm run start`
+```git clone https://github.com/L-C-B/SpectreLauncher Launcher```
+```cd Launcher```
+```npm install```
+```npm run start```
 Voilà, vous pouvez commencer à développer votre Launcher.
 
