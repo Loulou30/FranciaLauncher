@@ -1,5 +1,7 @@
  <h1 align="center">Spectre Launcher</h1>
-  <img align="center" src="https://cdn.discordapp.com/attachments/784128006082789399/816590175752028180/Login_Page.png"></img>
+
+
+
  
  
 ## ・Introduction
