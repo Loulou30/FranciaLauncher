@@ -66,5 +66,3 @@ ipcMain.on("logout", (evt, user) =>{
        });
   });
 });
-
-
