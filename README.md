@@ -1,5 +1,5 @@
  <h1 align="center">Spectre Launcher</h1>
- 
+  <img align="center" src="/assets/app/images/logo.png" width="200px" height="200px"></img>
  
  
 ## ・Introduction
