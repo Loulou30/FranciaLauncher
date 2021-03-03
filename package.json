@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "buildW": "electron-builder build -w",
+    "buildM": "electron-builder build -m",
+    "buildL": "electron-builder build -l"
   },
   "author": "LaCarotteBleue",
   "devDependencies": {
@@ -19,6 +21,10 @@
     "izitoast": "^1.4.0",
     "minecraft-launcher-core": "^3.14.1"
   },
+  "build": {
+    "appId": "fr.lacarottebleue.spectrelauncher",
+    "icon": "assets/app/images/logo.png"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/L-C-B/SpectreLauncher.git"
@@ -29,3 +35,4 @@
   },
   "homepage": "https://github.com/L-C-B/SpectreLauncher#readme"
 }
+

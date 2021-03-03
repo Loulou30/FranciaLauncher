@@ -40,7 +40,8 @@ ipcMain.on("login", (evt, data) =>{
   Authenticator.getAuth(data.user,data.pass)
   .then((user) => {
     mainWindow.loadURL(path.join(__dirname, "assets/app/app.html")).then(() => {
-      mainWindow.webContents.send("user", user);
+      mainWindow.webContents.send("user", user.name);
+      mainWindow.webContents.send("user", user.uuid);
     });
   }).catch(() => {
     evt.sender.send("err", "Identifiants invalides");
@@ -50,7 +51,9 @@ ipcMain.on("loginToken", (evt, data) =>{
   Authenticator.refreshAuth(data.access_token, data.client_token)
   .then((user) => {
     mainWindow.loadURL(path.join(__dirname, "assets/app/app.html")).then(() => {
-      mainWindow.webContents.send("user", user);
+      mainWindow.webContents.send("user", user.name);
+      mainWindow.webContents.send("user", user.uuid);
+      
 
     });
  
@@ -66,3 +69,5 @@ ipcMain.on("logout", (evt, user) =>{
        });
   });
 });
+
+
