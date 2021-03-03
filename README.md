@@ -1,13 +1,11 @@
  <h1 align="center">Spectre Launcher</h1>
  
+ 
+ 
 ## ・Introduction
 
 Bienvenue sur le **GitHub** du **Spectre Launcher** ! Ce Launcher a été conçu spécialement pour le [Spectre Client](https://spectreclient.fr/). Mais vous pouvez tout de même l'utiliser pour créer votre propre Launcher.
 J'ai conçu ce Launcher grâce au tutoriel de [SlashDev](https://slashdev.eu/) avec [Electron.js](https://www.electronjs.org/). La version actuel du Launcher est la **1.0**.
-
-
-<img align="center" src="https://cdn.discordapp.com/attachments/784128006082789399/816590175752028180/Login_Page.png"></img>
-
 
 ## ・Spectre Client
 
