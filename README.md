@@ -23,4 +23,3 @@ Pour commencer à développer votre Launcher en vous servant de celui-là (Le Ja
 cd Launcher
 npm install
 npm run start```
-
