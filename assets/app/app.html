@@ -52,16 +52,19 @@
       let progress = document.querySelector(".progress-done");
 
       deco.addEventListener("click", () => {
-        ipc.send("logout", JSON.parse(localStorage.getItem("user")));
         localStorage.clear()
-      });
+        ipc.send("logout", JSON.parse(localStorage.getItem("user")));
+        
+
+
+        });
        
       ipc.on("user",(evt, user) => {
-        skin.src = `https://minotar.net/avatar/${user.name}/100.png`;
+        skin.src = `https://minotar.net/avatar/${user}/100.png`;
         localStorage.setItem("user", JSON.stringify(user));
+
       });
- 
-     
+
 
     </script>
   </body>

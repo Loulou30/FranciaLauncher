@@ -1,11 +1,11 @@
 const { app, ipcMain, BrowserWindow } = require("electron");
 const path = require("path");
 const { Client, Authenticator } = require("minecraft-launcher-core");
-
+const {autoUpdate} = require('electron-auto-update');
+ 
+autoUpdate();
 
 let mainWindow;
-
-
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Spectre Client",
@@ -40,7 +40,7 @@ ipcMain.on("login", (evt, data) =>{
   Authenticator.getAuth(data.user,data.pass)
   .then((user) => {
     mainWindow.loadURL(path.join(__dirname, "assets/app/app.html")).then(() => {
-      mainWindow.webContents.send("user", user.name);
+      mainWindow.webContents.send("user", user);
       mainWindow.webContents.send("user", user.uuid);
     });
   }).catch(() => {
@@ -48,10 +48,10 @@ ipcMain.on("login", (evt, data) =>{
   });
 });
 ipcMain.on("loginToken", (evt, data) =>{
-  Authenticator.refreshAuth(data.access_token, data.client_token)
+  Authenticator.getAuth(data.access_token, data.client_token)
   .then((user) => {
     mainWindow.loadURL(path.join(__dirname, "assets/app/app.html")).then(() => {
-      mainWindow.webContents.send("user", user.name);
+      mainWindow.webContents.send("user", user)
       mainWindow.webContents.send("user", user.uuid);
       
 
@@ -61,13 +61,13 @@ ipcMain.on("loginToken", (evt, data) =>{
     evt.sender.send("err", "Token expiré");
   });
 });
-ipcMain.on("logout", (evt, user) =>{
-  mainWindow.loadURL(path.join(__dirname, "assets/app/login.html")).then(() => {
-    Authenticator.invalidate(
-       ). catch(() => {
-        evt.sender.send("err", "Erreur lors de la déconnexion");
-       });
+ipcMain.on('logout', (evt, user) => {
+  mainWindow.loadURL(path.join(__dirname, 'assets/app/login.html')).then(() => {
+  }).catch(() => {
+      evt.sender.send("err", "Erreur lors de la déconnexion");
+    });
   });
-});
+
+
 
 

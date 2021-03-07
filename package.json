@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "custom-electron-titlebar": "^3.2.6",
+    "electron-auto-update": "^1.2.2",
     "izitoast": "^1.4.0",
     "minecraft-launcher-core": "^3.14.1"
   },
@@ -35,4 +36,3 @@
   },
   "homepage": "https://github.com/L-C-B/SpectreLauncher#readme"
 }
-

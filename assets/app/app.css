@@ -177,8 +177,8 @@
 .modal-body {
   padding: 16px 16px;
 }
-
-select {
+ 
+select { 
   padding: 10px;
   border: none;
   border-bottom: 3px lightseagreen solid;
