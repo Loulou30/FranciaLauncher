@@ -42,6 +42,7 @@ ipcMain.on("login", (evt, data) =>{
     mainWindow.loadURL(path.join(__dirname, "assets/app/app.html")).then(() => {
       mainWindow.webContents.send("user", user);
       mainWindow.webContents.send("user", user.uuid);
+
     });
   }).catch(() => {
     evt.sender.send("err", "Identifiants invalides");
@@ -53,8 +54,7 @@ ipcMain.on("loginToken", (evt, data) =>{
     mainWindow.loadURL(path.join(__dirname, "assets/app/app.html")).then(() => {
       mainWindow.webContents.send("user", user)
       mainWindow.webContents.send("user", user.uuid);
-      
-
+    
     });
  
   }).catch(() => {

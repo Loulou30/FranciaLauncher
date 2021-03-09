@@ -68,10 +68,11 @@
   if(!inputPseudo.value && !inputMdp.value) {
       loginBtn.disabled = false,
       loginBtn.innerHTML = "Connexion";
-          iziToast.warning({
+      iziToast.info({
             message: "Veuillez entrer vos identifiants",
             position: "bottomRight",
             transitionIn: "fadeInDown",
+
           });
         }
         
