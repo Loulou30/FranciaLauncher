@@ -19,4 +19,5 @@ Mais, il est interdit de copier & coller le code du Launcher. Si vous voulez en 
  ```> git clone https://github.com/L-C-B/SpectreLauncher Launcher
  > cd Launcher
  > npm i
- > npm run start```
+ > npm run start
+ ```
