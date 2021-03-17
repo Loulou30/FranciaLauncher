@@ -15,6 +15,8 @@ Ce **GitHub** a pour but d'aider les personnnes qui sont actuellement en train d
 Mais, il est interdit de copier & coller le code du Launcher. Si vous voulez en savoir plus, contactez-moi sur [Discord](https://discord.gg/qHwGDUN) `LaCarotteBleue#8874`.
 
  ## Développement
+
+*Voici les étapes à suivre pour commencer à modifier le Launcher :*
  
  ```
  > git clone https://github.com/L-C-B/SpectreLauncher Launcher
