@@ -3,11 +3,8 @@ const path = require("path");
 const { Client, Authenticator } = require("minecraft-launcher-core");
 const Launcher = new Client();
 const autoUpdater = require('electron-updater').autoUpdater
-function UpdateAuto() {
-autoUpdater.checkForUpdates();
-autoUpdater.downloadUpdate();
-}
 let mainWindow;
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Spectre Client",
