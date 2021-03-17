@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="toast/toast.css" />
     <script src="toast/toast.js"></script>
 
-    
-     
 
   </head>
   <body>
@@ -62,6 +60,9 @@
      ipc.send("login", {
        user: inputPseudo.value,
        pass: inputMdp.value
+     
+
+
      });
     };
   });
@@ -83,15 +84,14 @@
           title: "Erreur",
           message: errorMessage,
           position: "bottomRight",
-          transitionIn: "fadeInDown",
         });
         loginBtn.disabled = false;
         loginBtn.innerHTML = "Connexion";
  });
 
- if(localStorage.getItem("user")) {
-   ipc.send("loginToken", JSON.parse(localStorage.getItem("user")));
- }
+ if (localStorage.getItem('user')) {
+        ipc.send('loginToken', JSON.parse(localStorage.getItem('user')));
+      }
 </script>
   </body>
 </html>
