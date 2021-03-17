@@ -18,7 +18,7 @@ Mais, il est interdit de copier & coller le code du Launcher. Si vous voulez en 
 
 *Voici les étapes à suivre pour commencer à modifier le Launcher :*
 
-Il vous faudra aussi le logiciel [Visual Studio Code](https://code.visualstudio.com/)
+Il vous faudra aussi le logiciel [Visual Studio Code](https://code.visualstudio.com/).
 *Ensuite, ouvrez votre Invite de commandes et exécutez les commandes suivantes :*
  
  ```
