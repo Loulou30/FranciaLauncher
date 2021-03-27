@@ -21,7 +21,7 @@ Téléchargez [Visual Studio Code](https://code.visualstudio.com/download) et en
 > git clone https://github.com/L-C-B/SpectreLauncher Launcher
 > cd Launcher
 > npm install
-> npm start
+> npm run start
 ```
 
 *Voilà, pouvez désormais commencer à développer votre Launcher !*
