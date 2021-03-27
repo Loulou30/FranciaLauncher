@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="app.css" />  
     <link rel="stylesheet" href="toast/toast.css" />   
     <script src="toast/toast.js"></script>
+        <script src="toast/toast.js"></script>
     <title>Spectre Launcher - App</title>
   </head>
   <body>
@@ -44,7 +45,7 @@
       let bar = new custombar.Titlebar({
         menu: null,
         backgroundColor: custombar.Color.fromHex("#161616"),
-        maximizable : false
+        maximizable : false,
       });
       deco.addEventListener("click", () => {
         localStorage.clear()
@@ -57,7 +58,7 @@
         shell.openExternal("http://spectreclient.fr/");
         iziToast.info({
         title: 'Site Web',
-        message: 'Ouverture du lien',
+        message: 'Ouverture du lien.',
         color: "#FFE96F"
 });
       });
@@ -67,63 +68,17 @@
         shell.openExternal("https://discord.gg/qHwGDUN");
         iziToast.info({
         title: 'Discord',
-        message: 'Ouverture du lien',
+        message: 'Ouverture du lien.',
         color: "#FFE96F"
 });
       });
       options.addEventListener("click", () => {
-        options.disabled = false
         event.preventDefault();
-        iziToast.question({
-        timeout: 20000,
-        close: true,
-        overlay: true,
-        displayMode: 'once',
-        zindex: 999,
-        color: "#A4FFA9",
-        title: 'Mémoire vive',
-        position: 'center',
-        buttons: [
-['<button><b>1 GO</b></button>', function (instance, toast) {
- 
-instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
- 
-}, false],
-['<button><b>2 GO</b></button>', function (instance, toast) {
- 
- instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-}, false],
-['<button><b>3 GO</b></button>', function (instance, toast) {
- 
- instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-}, false],
-['<button><b>4 GO</b></button>', function (instance, toast) {
- 
- instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-}, false],
-['<button><b>5 GO</b></button>', function (instance, toast) {
- 
- instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-}, false],
-['<button id="6"><b>6 GO</b></button>', function (instance, toast) {
- let six = document.getElementById('6')
- six.addEventListener("click", () => {
-  event.preventDefault();
-   ram = '6'
-   console.log(ram)
- });
- 
- instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
-
-}, false],
-    ],
-});
-      })
+        iziToast.info({
+          title: "Info",
+          message: "Le jeu se lance par défault entre 1G et 2G.",
+        });
+      });
       playbtn.addEventListener('click', () => {
         event.preventDefault();
         ipc.send('play', JSON.parse(localStorage.getItem('user')))
@@ -133,15 +88,13 @@ instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
     }, 30000);
         iziToast.info({
           title: 'Minecraft',
-          message: 'Lancement du Jeu en cours'
+          message: 'Lancement du Jeu en cours.'
         });
       });
       ipc.on("user",(evt, user) => {
         localStorage.setItem("user", JSON.stringify(user));
         skin.src = `https://minotar.net/avatar/${user.name}/100.png`;
       });
-
-
     </script>
   </body>
   </html>

@@ -19,6 +19,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "custom-electron-titlebar": "^3.2.6",
+    "electron-splashscreen": "^1.0.0",
     "electron-updater": "^4.3.8",
     "izitoast": "^1.4.0",
     "minecraft-launcher-core": "^3.14.1"

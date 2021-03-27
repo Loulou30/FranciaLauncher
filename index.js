@@ -4,7 +4,6 @@ const { Client, Authenticator } = require("minecraft-launcher-core");
 const Launcher = new Client();
 const autoUpdater = require('electron-updater').autoUpdater
 let mainWindow;
-
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Spectre Client",
@@ -64,7 +63,7 @@ ipcMain.on('play', (evt, data )=> {
     authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
     root: `C:/Users/${process.env.username || process.env.user}/AppData/Roaming/.spectreclient`,
     version: {
-        number: "1.8.9",
+        number: "1.16.5",
         type: "release"
     },
     memory: {
