@@ -13,7 +13,7 @@ Mais, il est interdit de copier & coller le code du Launcher. Si vous voulez en 
 
 ## Développement
 
-*Pour commencer à développer votre Launcher, suivez ces étapes :
+*Pour commencer à développer votre Launcher, suivez ces étapes :*
 
 Téléchargez [Visual Studio Code](https://code.visualstudio.com/download) et ensuite, ouvrez votre Invite de commandes et entrez les commandes suivantes.
 
