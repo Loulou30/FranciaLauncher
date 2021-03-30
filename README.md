@@ -28,5 +28,5 @@ Téléchargez [Visual Studio Code](https://code.visualstudio.com/download) et en
 
 ## Ajouts Launcher
 
-Je considère le Launcher fini mais cependant, il manque quand même certaines fonctionnalités comme le choix de la **RAM**, l'**Auto-Updater**, ou même quelques petits ajouts comme les **transitions de pages en pages** ou une **optimisation du code** par exemple.
+> Je considère le Launcher fini mais cependant, il manque quand même certaines fonctionnalités comme le choix de la **RAM**, l'**Auto-Updater**, ou même quelques petits ajouts comme les **transitions de pages en pages** ou une **optimisation du code** par exemple.
 C'est pour cela que si vous pouvez me mp sur [Discord](https://discord.com/) `LaCarotteBleue#8874` (*Je n'accepte pas la demande d'ami si je n'ai pas de serveurs en commun avec vous*) si vous avez développé certaine de ces fonctionnalités ou même d'autres.
