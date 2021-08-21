@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/login.css" /> 
+    <link rel="stylesheet" href="../css/toast.css" />
+    <script src="../scripts/toast.js"></script>
+  </head>
+    <body>
+      <form>
+        <div class="login-box">
+          <div class="textbox">
+            <i class="fas fa-user"></i>
+            <input type="text" id= "pseudo"placeholder="E-Mail">
+          </div> 
+          <div class="textbox">
+            <i class="fas fa-lock"></i>
+            <input type="password" id= "mdp"placeholder="Mot de passe">
+          </div>
+        <button class= "button"id="LoginMojang">Connexion</button>
+        <button class= "button"id="LoginMicrosoft"><img src="../images/microsoft.png" height="20" width="20"></img></button>
+  <script>
+  const custombar = require("custom-electron-titlebar");
+  const ipc = require("electron").ipcRenderer;
+  const iziToast = require('izitoast')
+  let inputPseudo = document.getElementById("pseudo");
+  let inputMdp = document.getElementById("mdp");
+  let LoginMojang = document.getElementById("LoginMojang");
+  let LoginMicrosoft = document.getElementById("LoginMicrosoft");
+  let bar = new custombar.Titlebar({
+    menu: null,
+    backgroundColor: custombar.Color.fromHex("#161616"),
+    maximizable : false
+  });
+  LoginMicrosoft.addEventListener("click", () => {
+  ipc.send("LoginMicrosoft");
+});
+  LoginMojang.addEventListener("click",() => {
+    if(inputPseudo.value && inputMdp.value) {
+    LoginMojang.disabled = true;
+      ipc.send("LoginMojang", {
+        user: inputPseudo.value,
+        pass: inputMdp.value
+     });
+    };
+  });
+  if(!inputPseudo.value && !inputMdp.value) {
+    LoginMojang.disabled = false,
+    LoginMojang.innerHTML = "Connexion";
+      iziToast.info({
+            message: "Veuillez entrer vos identifiants",
+            position: "bottomRight",
+            transitionIn: "fadeInDown",
+          });
+        };
+  ipc.on("err", (event, errorMessage) => {
+      iziToast.error({
+        id: "error",
+        title: "Erreur",
+        message: errorMessage,
+        position: "bottomRight",
+        });
+        LoginMojang.disabled = false;
+        LoginMojang.innerHTML = "Connexion";
+ });
+  ipc.on("msg", (event, Message) => {
+      iziToast.info({
+        title: Message,
+        iconUrl: '../images/logo.png',
+        color: "#161616",
+        titleColor: "#faa81a",
+        iconColor: "iconColor",
+        close: false
+        });
+ });
+  if (localStorage.getItem('user')) {
+    ipc.send('LoginMojangToken', JSON.parse(localStorage.getItem('user')));
+      };
+      </script>
+    </body>
+  </html>
