@@ -1,12 +1,22 @@
+// Importation des Modules
+const DiscordRichPresence = require('discord-rich-presence')('872877401279987812');
 const { app, ipcMain, BrowserWindow} = require("electron");
 const path = require("path");
 const { Client, Authenticator } = require("minecraft-launcher-core");
 const Launcher = new Client();
-const autoUpdater = require('electron-updater').autoUpdater
+const fs = require("fs");
+const msmc = require("msmc");
+const fetch = require("node-fetch");
+
+// Création de la fenêtre principale
 let mainWindow;
+function ShowApp() {
+  mainWindow.show()
+  SplashStart.close();
+}
 function createWindow() {
   mainWindow = new BrowserWindow({
-    title: "Spectre Client",
+    title: "Spectre Launcher",
     icon: path.join(__dirname, "/assets/app/images/logo.png"),
     width: 980,
     maxWidth: 980,
@@ -14,6 +24,7 @@ function createWindow() {
     height: 530,
     maxHeight: 530,
     minHeight: 530,
+    show: false,
     titleBarStyle: "hidden",
     frame: false,
     webPreferences: {
@@ -21,69 +32,112 @@ function createWindow() {
       enableRemoteModule: true,
     },
   });
-
-  mainWindow.loadFile(path.join(__dirname, "assets/app/login.html"));
-}
-app.whenReady().then(() => {
-  createWindow();
-app.on("activate", function () {
+  mainWindow.loadFile(path.join(__dirname, "assets/app/html/login.html")).then(() => {
+    console.log("- The mainWindow has been created");
+  });
+  // Création du Splash Screen
+  SplashStart = new BrowserWindow({width: 300, icon: path.join(__dirname, "/assets/app/images/logo.png") ,height: 400, frame: false, alwaysOnTop: true, transparent: true});
+  SplashStart.loadFile(path.join(__dirname, 'assets/app/html/splash.html'));
+  console.log("- The Splash sreen has been created");
+  mainWindow.once('ready-to-show', () => {
+   setTimeout(ShowApp, 2900);
+  });
+};
+// Activation de la Discord Rich Presence
+DiscordRichPresence.updatePresence({
+  state: 'En Ligne',
+  startTimestamp: Date.now(),
+  endTimestamp: Date.now() + 1337,
+  largeImageKey: 'large',
+  instance: true,
+  });
+  console.log("- DiscordRichPresence - Enabled")
+  app.whenReady().then(() => {
+    createWindow();
+  app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
-app.on("window-all-closed", function () {
-  if (process.platform !== "darwin") app.quit();
-});
-ipcMain.on('login',(evt,data)=>{
-  Authenticator.getAuth(data.user, data.pass)
+  app.on("window-all-closed", function () {
+    if (process.platform !== "darwin") app.quit();
+  });
+  // Login Mojang avec les Identifiants
+  ipcMain.on('LoginMojang',(evt,data)=>{
+    Authenticator.getAuth(data.user, data.pass)
     .then((user) => {
-      mainWindow.loadFile(path.join(__dirname, 'assets/app/app.html')).then(() => {
+      mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         mainWindow.webContents.send('user', user);
-        console.log('Pseudo : ' + user.name)
-      })
-    })
-  .catch(() => {
-  evt.sender.send('err', 'Mauvais identifiants');
- });
-});
-ipcMain.on('loginToken', (evt, data) => {
-  Authenticator.refreshAuth(data.access_token, data.client_token)
-    .then((user) => {
-      mainWindow.loadFile(path.join(__dirname, 'assets/app/app.html')).then(() => {
-        mainWindow.webContents.send('user', user);
-        console.log('Pseudo : ' + user.name)
+        console.log('\nPseudo - ' + user.name + "\n")
       });
-    })
-    .catch(() => {
+    }).catch(() => { 
+      evt.sender.send('err', 'Mauvais identifiants');
+    });
+  });
+  ipcMain.on('LoginMojangToken', (evt, data) => {
+    Authenticator.getAuth(data.access_token, data.client_token)
+    .then((user) => {
+      mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
+        mainWindow.webContents.send('user', user);
+        console.log('\nPseudo - ' + user.name + "\n")
+      });
+    }).catch(() => {
       evt.sender.send('err', 'Tokens expirés');
     });
+  });
+  ipcMain.on('LoginMicrosoft', (evt, data) => {
+    msmc.setFetch(fetch)
+    msmc.fastLaunch("electron", (update) => {
+      console.log(update);
+    }).then(call => {
+      if(msmc.errorCheck(call)) {
+        evt.sender.send("err", "Erreur lors de la connexion") 
+        return;
+      };
+      var accessToken = call.access_token;
+      var profile = call.profile;
+      console.log(profile);
+      mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
+        let user = {
+          name:profile.name,
+          skin:profile.skins[0].url
+        };
+        mainWindow.webContents.send('profile', user);
+        console.log('Pseudo - ' + user.name);
+      let appdata = app.getPath("appData")
 });
-ipcMain.on('play', (evt, data )=> {
-  let options = {
-    clientPackage: null,
-    authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
-    root: `C:/Users/${process.env.username || process.env.user}/AppData/Roaming/.spectreclient`,
-    version: {
-        number: "1.16.5",
-        type: "release"
-    },
-    memory: {
-        max: "2G",
-        min: "1G"
-    },
-    window: {
-      width: "854",
-      height: "480"
-    },
-}
-Launcher.launch(options).catch((err) => {
-evt.sender.send('err', 'Erreur lors du lancement de Minecraft')
-app.quit()
+    });
+  });
+  ipcMain.on('play', (evt, data) => {
+    let OptionsMojang = {
+      clientPackage: null,
+      authorization: msmc.getMCLC().getAuth(call) || Authenticator.refreshAuth(data.access_token, data.client_token),
+      root: `${appdata}/.spectrelauncher/`,
+      version: {
+          number: "1.14.4",
+          type: "release"
+      },
+      memory: {
+          max: "4G",
+          min: "1G"
+      },
+      window: {
+        width: "854",
+        height: "480"
+      },
+  };
+  Launcher.launch(OptionsMojang)
+  .catch(() => {
+    evt.sender.send("err", "Erreur lors du lancement")
+  });
+  evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
+  Launcher.on('debug', (e) => console.log(e))
+  Launcher.on('data', (e) => console.log(e));
 });
-Launcher.on('debug', (e) => console.log(e))
-Launcher.on('data', (e) => console.log(e));    
-})
+// Déconnexion
+
 ipcMain.on('logout', (evt, user) => {
-  mainWindow.loadFile(path.join(__dirname, 'assets/app/login.html'))
+  mainWindow.loadFile(path.join(__dirname, 'assets/app/html/login.html'))
     .catch(() => {});
     evt.sender.send('err', 'Erreur lors de la déconnexion')
   });
+
