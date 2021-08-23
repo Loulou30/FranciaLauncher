@@ -5,7 +5,19 @@
     padding: 0;
     font-family: sans-serif;
     background: #161616;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
   }
+  @keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
   .button-box{
     width: 300px;
     height: 95px;

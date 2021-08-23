@@ -16,6 +16,9 @@ function ShowApp() {
   mainWindow.show()
   SplashStart.close();
 }
+function loading() {
+  mainWindow.loadFile(path.join(__dirname, 'assets/app/html/loading.html'));
+}
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Spectre Launcher",
@@ -48,8 +51,6 @@ function createWindow() {
 // Activation de la Discord Rich Presence
 DiscordRichPresence.updatePresence({
   state: 'En Ligne',
-  startTimestamp: Date.now(),
-  endTimestamp: Date.now() + 1337,
   largeImageKey: 'large',
   instance: true,
   });
@@ -64,7 +65,7 @@ DiscordRichPresence.updatePresence({
     if (process.platform !== "darwin") app.quit();
   });
   // Login Mojang avec les Identifiants
-  ipcMain.on('LoginMojang',(evt,data)=>{
+  ipcMain.on('LoginMojang',(evt,data) => {
     Authenticator.getAuth(data.user, data.pass)
     .then((user) => {
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
