@@ -58,18 +58,23 @@
       event.preventDefault();
       shell.openExternal("https://discord.gg/qHwGDUN");
     });
-    playbtn.addEventListener('click', () => {
-      event.preventDefault();
-      playbtn.disabled = true;
-      ipc.send("play", JSON.parse(localStorage.getItem("user"))); 
-    });
     ipc.on("profile",(evt, user) => {
       localStorage.setItem("profile", JSON.stringify(user));
       skin.src = `https://minotar.net/avatar/${user.name}/100.png`;
+      playbtn.addEventListener('click', () => {
+      event.preventDefault();
+      playbtn.disabled = true;
+      ipc.send("PlayMicrosoft", JSON.parse(localStorage.getItem("user"))); 
     });
+  });
     ipc.on("user",(evt, user) => {
       localStorage.setItem("user", JSON.stringify(user));
       skin.src = `https://minotar.net/avatar/${user.name}/100.png`;
+      playbtn.addEventListener('click', () => {
+      event.preventDefault();
+      playbtn.disabled = true;
+      ipc.send("PlayMojang", JSON.parse(localStorage.getItem("user"))); 
+  });
     });
     </script>
   </body>

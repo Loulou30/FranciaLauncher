@@ -1,6 +1,7 @@
 // Importation des Modules
 const DiscordRichPresence = require('discord-rich-presence')('872877401279987812');
 const { app, ipcMain, BrowserWindow} = require("electron");
+const ipc = require("electron").ipcRenderer
 const path = require("path");
 const { Client, Authenticator } = require("minecraft-launcher-core");
 const Launcher = new Client();
@@ -71,7 +72,7 @@ DiscordRichPresence.updatePresence({
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         mainWindow.webContents.send('user', user);
         console.log('\nPseudo - ' + user.name + "\n")
-        ipcMain.on('play', (evt, data) => {
+        ipcMain.on('PlayMojang', (evt, data) => {
           let OptionsMojang = {
             clientPackage: null,
             authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
@@ -108,35 +109,9 @@ DiscordRichPresence.updatePresence({
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         mainWindow.webContents.send('user', user);
         console.log('\nPseudo - ' + user.name + "\n")
-        ipcMain.on('play', (evt, data) => {
-          let OptionsMojangToken = {
-            clientPackage: null,
-            authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
-            root: `${appdata}/.spectrelauncher/`,
-            version: {
-                number: "1.14.4",
-                type: "release"
-            },
-            memory: {
-                max: "4G",
-                min: "1G"
-            },
-            window: {
-              width: "854",
-              height: "480"
-            },
-        };
-        Launcher.launch(OptionsMojangToken)
-        .catch(() => {
-          evt.sender.send("err", "Erreur lors du lancement")
-        });
-        evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
-        Launcher.on('debug', (e) => console.log(e))
-        Launcher.on('data', (e) => console.log(e));
       });
-});
-      }).catch(() => { 
-        evt.sender.send('err', 'Tokens expirés');
+    }).catch(() => { 
+      evt.sender.send('err', 'Tokens expirés');
     });
   });
   ipcMain.on('LoginMicrosoft', (evt, data) => {
@@ -157,7 +132,7 @@ DiscordRichPresence.updatePresence({
         };
         mainWindow.webContents.send('profile', user);
         console.log('\nPseudo - ' + user.name + "\n");
-        ipcMain.on('play', (evt, data) => {
+        ipcMain.on('PlayMicrosoft', (evt, data) => {
           let OptionsMicrosoft = {
             clientPackage: null,
             authorization: msmc.getMCLC().getAuth(call),
