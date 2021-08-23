@@ -14,10 +14,10 @@ Mais, il est interdit de copier & coller le code du Launcher et de se l'appropri
 
 *Pour commencer à développer & modifier le Launcher, suivez ces étapes :
 
-`` 
+```
 > git clone https://github.com/L-C-B/SpectreLauncher.git
 > cd SpectreLauncher
 > npm install
-`` 
+```
 
 Voilà ! Vous pouvez maintenant commencer à modifier le Launcher !
