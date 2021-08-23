@@ -8,8 +8,10 @@ const fs = require("fs");
 const msmc = require("msmc");
 const fetch = require("node-fetch");
 
+
 // Création de la fenêtre principale
 let mainWindow;
+let appdata = app.getPath("appData")
 function ShowApp() {
   mainWindow.show()
   SplashStart.close();
@@ -68,26 +70,78 @@ DiscordRichPresence.updatePresence({
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         mainWindow.webContents.send('user', user);
         console.log('\nPseudo - ' + user.name + "\n")
+        ipcMain.on('play', (evt, data) => {
+          let OptionsMojang = {
+            clientPackage: null,
+            authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
+            root: `${appdata}/.spectrelauncher/`,
+            version: {
+                number: "1.14.4",
+                type: "release"
+            },
+            memory: {
+                max: "4G",
+                min: "1G"
+            },
+            window: {
+              width: "854",
+              height: "480"
+            },
+        };
+        Launcher.launch(OptionsMojang)
+        .catch(() => {
+          evt.sender.send("err", "Erreur lors du lancement")
+        });
+        evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
+        Launcher.on('debug', (e) => console.log(e))
+        Launcher.on('data', (e) => console.log(e));
+      });
       });
     }).catch(() => { 
       evt.sender.send('err', 'Mauvais identifiants');
     });
-  });
+});
   ipcMain.on('LoginMojangToken', (evt, data) => {
     Authenticator.getAuth(data.access_token, data.client_token)
     .then((user) => {
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         mainWindow.webContents.send('user', user);
         console.log('\nPseudo - ' + user.name + "\n")
+        ipcMain.on('play', (evt, data) => {
+          let OptionsMojangToken = {
+            clientPackage: null,
+            authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
+            root: `${appdata}/.spectrelauncher/`,
+            version: {
+                number: "1.14.4",
+                type: "release"
+            },
+            memory: {
+                max: "4G",
+                min: "1G"
+            },
+            window: {
+              width: "854",
+              height: "480"
+            },
+        };
+        Launcher.launch(OptionsMojangToken)
+        .catch(() => {
+          evt.sender.send("err", "Erreur lors du lancement")
+        });
+        evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
+        Launcher.on('debug', (e) => console.log(e))
+        Launcher.on('data', (e) => console.log(e));
       });
-    }).catch(() => {
-      evt.sender.send('err', 'Tokens expirés');
+});
+      }).catch(() => { 
+        evt.sender.send('err', 'Tokens expirés');
     });
   });
   ipcMain.on('LoginMicrosoft', (evt, data) => {
     msmc.setFetch(fetch)
     msmc.fastLaunch("electron", (update) => {
-      console.log(update);
+      console.log(update)
     }).then(call => {
       if(msmc.errorCheck(call)) {
         evt.sender.send("err", "Erreur lors de la connexion") 
@@ -95,44 +149,42 @@ DiscordRichPresence.updatePresence({
       };
       var accessToken = call.access_token;
       var profile = call.profile;
-      console.log(profile);
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         let user = {
           name:profile.name,
           skin:profile.skins[0].url
         };
         mainWindow.webContents.send('profile', user);
-        console.log('Pseudo - ' + user.name);
-      let appdata = app.getPath("appData")
+        console.log('\nPseudo - ' + user.name + "\n");
+        ipcMain.on('play', (evt, data) => {
+          let OptionsMicrosoft = {
+            clientPackage: null,
+            authorization: msmc.getMCLC().getAuth(call),
+            root: `${appdata}/.spectrelauncher/`,
+            version: {
+                number: "1.14.4",
+                type: "release"
+            },
+            memory: {
+                max: "4G",
+                min: "1G"
+            },
+            window: {
+              width: "854",
+              height: "480"
+            },
+        };
+        Launcher.launch(OptionsMicrosoft)
+        .catch(() => {
+          evt.sender.send("err", "Erreur lors du lancement")
+        });
+        evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
+        Launcher.on('debug', (e) => console.log(e))
+        Launcher.on('data', (e) => console.log(e));
+      });
 });
     });
   });
-  ipcMain.on('play', (evt, data) => {
-    let OptionsMojang = {
-      clientPackage: null,
-      authorization: msmc.getMCLC().getAuth(call) || Authenticator.refreshAuth(data.access_token, data.client_token),
-      root: `${appdata}/.spectrelauncher/`,
-      version: {
-          number: "1.14.4",
-          type: "release"
-      },
-      memory: {
-          max: "4G",
-          min: "1G"
-      },
-      window: {
-        width: "854",
-        height: "480"
-      },
-  };
-  Launcher.launch(OptionsMojang)
-  .catch(() => {
-    evt.sender.send("err", "Erreur lors du lancement")
-  });
-  evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
-  Launcher.on('debug', (e) => console.log(e))
-  Launcher.on('data', (e) => console.log(e));
-});
 // Déconnexion
 
 ipcMain.on('logout', (evt, user) => {
@@ -140,4 +192,3 @@ ipcMain.on('logout', (evt, user) => {
     .catch(() => {});
     evt.sender.send('err', 'Erreur lors de la déconnexion')
   });
-
