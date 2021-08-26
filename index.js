@@ -9,7 +9,6 @@ const fs = require("fs");
 const msmc = require("msmc");
 const fetch = require("node-fetch");
 
-
 // Création de la fenêtre principale
 let mainWindow;
 let appdata = app.getPath("appData")
@@ -17,6 +16,7 @@ function ShowApp() {
   mainWindow.show()
   SplashStart.close();
 }
+// Loading Page (Pour les personnes qui en ont besoin)
 function loading() {
   mainWindow.loadFile(path.join(__dirname, 'assets/app/html/loading.html'));
 }
@@ -59,11 +59,11 @@ DiscordRichPresence.updatePresence({
   app.whenReady().then(() => {
     createWindow();
   app.on("activate", function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+    if(BrowserWindow.getAllWindows().length === 0) createWindow();
   });
 });
   app.on("window-all-closed", function () {
-    if (process.platform !== "darwin") app.quit();
+    if(process.platform !== "darwin") app.quit();
   });
   // Login Mojang avec les Identifiants
   ipcMain.on('LoginMojang',(evt,data) => {
@@ -133,38 +133,40 @@ DiscordRichPresence.updatePresence({
         mainWindow.webContents.send('profile', user);
         console.log('\nPseudo - ' + user.name + "\n");
         ipcMain.on('PlayMicrosoft', (evt, data) => {
-          let OptionsMicrosoft = {
-            clientPackage: null,
-            authorization: msmc.getMCLC().getAuth(call),
-            root: `${appdata}/.spectrelauncher/`,
-            version: {
-                number: "1.14.4",
-                type: "release"
-            },
-            memory: {
-                max: "4G",
-                min: "1G"
-            },
-            window: {
-              width: "854",
-              height: "480"
-            },
-        };
+              let OptionsMicrosoft = {
+                clientPackage: null,
+                authorization: msmc.getMCLC().getAuth(call),
+                root: `${appdata}/.spectrelauncher/`,
+                version: {
+                  number: "1.14.4",
+                  type: "release"
+              },
+              memory: {
+                  max: "1G",
+                  min: "1G",
+              },
+              window: {
+                width: "854",
+                height: "480"
+              },
+          };
         Launcher.launch(OptionsMicrosoft)
         .catch(() => {
           evt.sender.send("err", "Erreur lors du lancement")
         });
-        evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
-        Launcher.on('debug', (e) => console.log(e))
-        Launcher.on('data', (e) => console.log(e));
+          evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
+          Launcher.on('debug', (e) => console.log(e))
+          Launcher.on('data', (e) => console.log(e));
       });
-});
     });
+});
   });
-// Déconnexion
 
+
+// Déconnexion
 ipcMain.on('logout', (evt, user) => {
   mainWindow.loadFile(path.join(__dirname, 'assets/app/html/login.html'))
     .catch(() => {});
     evt.sender.send('err', 'Erreur lors de la déconnexion')
   });
+
