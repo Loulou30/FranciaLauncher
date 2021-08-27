@@ -2,7 +2,7 @@
   "name": "spectrelauncher",
   "icon": "assets/app/images/logo.ico",
   "productName": "Spectre Launcher",
-  "version": "1.6.4",
+  "version": "1.0.0",
   "description": "Launcher Minecraft du Spectre Client.",
   "main": "index.js",
   "scripts": {
