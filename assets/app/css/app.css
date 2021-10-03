@@ -18,7 +18,7 @@
         opacity: 1;
     }
 }
-  .button-box{
+  .other-box {
     width: 300px;
     height: 95px;
     padding: 40px;
@@ -31,7 +31,7 @@
     color:white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-  .button {
+  #site {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
@@ -52,11 +52,11 @@
     border-radius:         12px / 24px;   
     font-weight: bolder;
 }
-  .button:hover {
+  #site:hover {
     background: #ffb83d;  
 }
-  .box {
-    position: absolute;
+  .main-box {
+    position: relative;
     left: 246px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -65,7 +65,6 @@
     background: #191919;
     border-radius: 20px;
     position: absolute;
-    left: 242px;
     top: 52px; 
 }
   #play {
@@ -74,19 +73,20 @@
     -webkit-border-radius: 12px / 24px;
     -moz-border-radius:    12px / 24px; 
     border-radius:         12px / 24px;   
+    border: 0;
     display:inline-block;
     cursor:pointer;
-    width: 70%;
+    width: 85%;
     height: 30%;
     color:#ffffff;
     font-family:Arial;
     font-size:20px;
     font-weight: bold;
-    padding:13px 32px;
+    padding: 10px;
     text-decoration:none;
-    position: absolute;
-    left: -315px;
+    position: relative;
     top: 95px;
+    outline: 0;
 }
  #play:hover {
     background-color: #62b362;
@@ -98,21 +98,21 @@
     position: relative;
     right: -90px;
 }
-  #background {
-    width: 246%;
-    height:  130%;
-    position: absolute;
-    right: 0px;
-    border-radius: 20px;
-    top: 200px;
+#background {
+  width: 246%;
+  height:  130%;
+  position: absolute;
+  right: 0px;
+  border-radius: 20px;
+  top: 200px;
 }
   #logo {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    right: 760px;
+    position: relative;
+    top: 60px;
+    left: 35px;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
   #discord {
@@ -171,18 +171,52 @@
   border-radius:         12px / 24px;   
   display:inline-block;
   cursor:pointer;
-  width: 70%;
+  width: 85%;
   height: 30%;
   color:#ffffff;
   font-family:Arial;
   font-size:20px;
   font-weight: bold;
-  padding:13px 32px;
+  padding: 10px;
   text-decoration:none;
-  position: absolute;
-  left: -315px;
-  top: 25px;
+  position: relative;
+  bottom: 25px;
+  border: 0;
+  outline: 0;
 }
 #deco:hover {
   background-color: #ec7171;
 }
+.buttonText {
+  transition: all 0.2s;
+}
+.buttonLoading .buttonText {
+  visibility: hidden;
+  opacity: 0;
+}
+.buttonLoading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+

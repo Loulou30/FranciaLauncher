@@ -1,25 +1,21 @@
-// Importation des Modules
-const DiscordRichPresence = require('discord-rich-presence')('872877401279987812');
+// Importation des Modules.
 const { app, ipcMain, BrowserWindow} = require("electron");
-const ipc = require("electron").ipcRenderer
 const path = require("path");
+const DiscordRichPresence = require('discord-rich-presence')('872877401279987812');
 const { Client, Authenticator } = require("minecraft-launcher-core");
 const Launcher = new Client();
 const fs = require("fs");
 const msmc = require("msmc");
+const ipc = require("electron").ipcRenderer;
 const fetch = require("node-fetch");
 
-// Création de la fenêtre principale
+// Création de la fenêtre principale.
 let mainWindow;
 let appdata = app.getPath("appData")
 function ShowApp() {
   mainWindow.show()
   SplashStart.close();
-}
-// Loading Page (Pour les personnes qui en ont besoin)
-function loading() {
-  mainWindow.loadFile(path.join(__dirname, 'assets/app/html/loading.html'));
-}
+};
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Spectre Launcher",
@@ -41,7 +37,7 @@ function createWindow() {
   mainWindow.loadFile(path.join(__dirname, "assets/app/html/login.html")).then(() => {
     console.log("- The mainWindow has been created");
   });
-  // Création du Splash Screen
+  // Création du Splash Screen.
   SplashStart = new BrowserWindow({width: 300, icon: path.join(__dirname, "/assets/app/images/logo.png") ,height: 400, frame: false, alwaysOnTop: true, transparent: true});
   SplashStart.loadFile(path.join(__dirname, 'assets/app/html/splash.html'));
   console.log("- The Splash sreen has been created");
@@ -49,7 +45,7 @@ function createWindow() {
    setTimeout(ShowApp, 2900);
   });
 };
-// Activation de la Discord Rich Presence
+// Activation de la Discord Rich Presence.
 DiscordRichPresence.updatePresence({
   state: 'En Ligne',
   largeImageKey: 'large',
@@ -108,16 +104,42 @@ DiscordRichPresence.updatePresence({
     .then((user) => {
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
         mainWindow.webContents.send('user', user);
-        console.log('\nPseudo - ' + user.name + "\n")
+        console.log('\nPseudo - ' + user.name + "\n");
+        ipcMain.on('PlayMojang', (evt, data) => {
+          let OptionsMojang = {
+            clientPackage: null,
+            authorization: Authenticator.refreshAuth(data.access_token, data.client_token),
+            root: `${appdata}/.spectrelauncher/`,
+            version: {
+                number: "1.14.4",
+                type: "release"
+            },
+            memory: {
+                max: "4G",
+                min: "1G"
+            },
+            window: {
+              width: "854",
+              height: "480"
+            },
+        };
+        Launcher.launch(OptionsMojang)
+        .catch(() => {
+          evt.sender.send("err", "Erreur lors du lancement")
+        });
+        evt.sender.send("msg", "Minecraft・Lancement du Jeu en cours.")
+        Launcher.on('debug', (e) => console.log(e))
+        Launcher.on('data', (e) => console.log(e));
+      });
       });
     }).catch(() => { 
       evt.sender.send('err', 'Tokens expirés');
     });
-  });
+});
   ipcMain.on('LoginMicrosoft', (evt, data) => {
-    msmc.setFetch(fetch)
+    msmc.setFetch(fetch);
     msmc.fastLaunch("electron", (update) => {
-      console.log(update)
+      console.log(update);
     }).then(call => {
       if(msmc.errorCheck(call)) {
         evt.sender.send("err", "Erreur lors de la connexion") 
@@ -161,12 +183,10 @@ DiscordRichPresence.updatePresence({
     });
 });
   });
-
-
 // Déconnexion
 ipcMain.on('logout', (evt, user) => {
   mainWindow.loadFile(path.join(__dirname, 'assets/app/html/login.html'))
-    .catch(() => {});
-    evt.sender.send('err', 'Erreur lors de la déconnexion')
+    .catch(() => {
+      evt.sender.send('err', 'Erreur lors de la déconnexion');
+    });
   });
-
