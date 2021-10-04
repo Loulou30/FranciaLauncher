@@ -51,7 +51,7 @@ DiscordRichPresence.updatePresence({
   largeImageKey: 'large',
   instance: true,
   });
-  console.log("- DiscordRichPresence - Enabled")
+  console.log("- DiscordRichPresence - Enabled");
   app.whenReady().then(() => {
     createWindow();
   app.on("activate", function () {
