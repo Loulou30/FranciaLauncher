@@ -3,7 +3,7 @@
 ## Introduction
 
 Bienvenue sur le **GitHub** du **Spectre Launcher** ! Vous pouvez tout de même l'utiliser pour créer votre propre Launcher.
-J'ai conçu ce Launcher avec [Electron](https://www.electronjs.org/). La version actuelle du Launcher est la **1.6.4**.
+J'ai conçu ce Launcher avec [Electron](https://www.electronjs.org/). La version actuelle du Launcher est la **v2.0.1**.
 
 ## Usage
 
