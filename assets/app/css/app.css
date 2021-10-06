@@ -1,187 +1,138 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: #161616;
-    animation-name: fadeInOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: 0.5s;
+body {
+  font-family: Arial;
+  background: #161616;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+}
+@keyframes fadeInOpacity {
+  0% {
+      opacity: 0;
   }
-  @keyframes fadeInOpacity {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+  100% {
+      opacity: 1;
+  }
 }
-  .other-box {
-    width: 300px;
-    height: 95px;
-    padding: 40px;
-    position: absolute;
-    top: 140px; right: -170px;
-    transform: translate(-50%,-50%);
-    background: #191919;
-    text-align: center;
-    border-radius: 20px;
-    color:white;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-  #site {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #faa81a;
-    width: 40%;;
-    position: absolute;
-    left: 20px;
-    top: 70px;
-    border: 0;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    -webkit-border-radius: 12px / 24px;
-    -moz-border-radius:    12px / 24px; 
-    border-radius:         12px / 24px;   
-    font-weight: bolder;
-}
-  #site:hover {
-    background: #ffb83d;  
-}
-  .main-box {
-    position: relative;
-    left: 246px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    width: 312px;
-    height: 175px;
-    background: #191919;
-    border-radius: 20px;
-    position: absolute;
-    top: 52px; 
-}
-  #play {
-    box-shadow: 0px 10px 14px -7px #000000;
-    background-color:#3e943e;
-    -webkit-border-radius: 12px / 24px;
-    -moz-border-radius:    12px / 24px; 
-    border-radius:         12px / 24px;   
-    border: 0;
-    display:inline-block;
-    cursor:pointer;
-    width: 85%;
-    height: 30%;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:20px;
-    font-weight: bold;
-    padding: 10px;
-    text-decoration:none;
-    position: relative;
-    top: 95px;
-    outline: 0;
-}
- #play:hover {
-    background-color: #62b362;
-}
-  #skin {
-    border-radius: 20%;
-    max-width: 50%;
-    height: auto;
-    position: relative;
-    right: -90px;
-}
-#background {
-  width: 246%;
-  height:  130%;
-  position: absolute;
-  right: 0px;
+.main-box {
+  position: relative;
+  left: 246px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  width: 312px;
+  height: 175px;
+  background: #191919;
   border-radius: 20px;
-  top: 200px;
+  position: absolute;
+  top: 52px; 
 }
-  #logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    position: relative;
-    top: 60px;
-    left: 35px;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+.other-box{
+  width: 300px;
+  height: 95px;
+  padding: 40px;
+  position: absolute;
+  top: 140px; right: -170px;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  border-radius: 20px;
+  color:white;
+  background-color: #191919;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-  #discord {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #56b863;
-    width: 40%;;
-    border: 0;
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    -webkit-border-radius: 12px / 24px;
-    -moz-border-radius:    12px / 24px; 
-    border-radius:         12px / 24px;    
-    font-weight: bolder;
+.settingsText {
+  color: #ffffff;
+  position: absolute;
+  top: 25px;
+  font-size: 20px;
+  left: 30px;
+  background-color: #161616;
+  text-align: center;
+  line-height: 45px;
+  height: 45px;
+  width: 210px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-  #discord:hover {
-    background: #63d172;
-}
-  #github {
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    outline: 0;
-    background: #56b8b8;
-    width: 40%;;
-    border: 0;
-    position: absolute;
-    left: 20px;
-    top: 120px;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    -webkit-border-radius: 12px / 24px;
-    -moz-border-radius:    12px / 24px; 
-    border-radius:         12px / 24px;     
-    font-weight: bolder; 
-}
-  #github:hover {
-    background: #61cece;
-}
-#deco {
-  box-shadow: 0px 10px 14px -7px #000000;
-  background-color:#b85656;
-  -webkit-border-radius: 12px / 24px;
-  -moz-border-radius:    12px / 24px; 
-  border-radius:         12px / 24px;   
-  display:inline-block;
-  cursor:pointer;
+#play {
+  background-color:#3e943e;
+  border-radius: 12px / 24px;   
+  border: 0;
+  cursor: pointer;
   width: 85%;
   height: 30%;
   color:#ffffff;
-  font-family:Arial;
   font-size:20px;
   font-weight: bold;
-  padding: 10px;
-  text-decoration:none;
+  position: relative;
+  top: 95px;
+  box-shadow: 0px 10px 14px -7px #000000;
+  outline: 0;
+}
+#play:hover {
+background-color: #62b362;
+}
+#options {
+  font-weight: bold;
+  cursor: pointer;
+  color: #ffffff;
+  position: absolute;
+  top: 100px;
+  font-size: 20px;
+  left: 30px;
+  background-color: #2864b3;
+  border-radius: 12px / 24px;   
+  text-align: center;
+  line-height: 45px;
+  height: 45px;
+  border: 0;
+  width: 210px;
+  box-shadow: 0px 10px 14px -7px #000000;
+  outline: 0;
+}
+#options:hover {
+  background-color: #3685ec;
+}
+#skin {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  left: 120px;
+  box-shadow: 0px 10px 14px -7px #000000;
+  border-radius: 20px;
+}
+#background {
+  width: 245%;
+  height:  130%;
+  position: absolute;
+  right: 0;
+  border-radius: 20px;
+  top: 200px;
+}
+#logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: relative;
+  top: 60px;
+  left: 35px;
+  box-shadow: 0px 10px 14px -7px #000000;
+}
+#deco {
+  background-color:#b85656;
+  border-radius: 12px / 24px;   
+  border: 0;
+  cursor: pointer;
+  width: 85%;
+  height: 30%;
+  color:#ffffff;
+  font-size:20px;
+  font-weight: bold;
   position: relative;
   bottom: 25px;
-  border: 0;
+  box-shadow: 0px 10px 14px -7px #000000;
   outline: 0;
 }
 #deco:hover {

@@ -19,7 +19,7 @@ function ShowApp() {
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Spectre Launcher",
-    icon: path.join(__dirname, "/assets/app/images/logo.png"),
+    icon: path.join(__dirname, "/assets/images/logo.png"),
     width: 980,
     maxWidth: 980,
     minWidth: 980,
@@ -38,7 +38,7 @@ function createWindow() {
     console.log("- The mainWindow has been created");
   });
   // Création du Splash Screen.
-  SplashStart = new BrowserWindow({width: 300, icon: path.join(__dirname, "/assets/app/images/logo.png") ,height: 400, frame: false, alwaysOnTop: true, transparent: true});
+  SplashStart = new BrowserWindow({width: 300, icon: path.join(__dirname, "/assets/images/logo.png") ,height: 400, frame: false, alwaysOnTop: true, transparent: true});
   SplashStart.loadFile(path.join(__dirname, 'assets/app/html/splash.html'));
   console.log("- The Splash sreen has been created");
   mainWindow.once('ready-to-show', () => {
@@ -51,7 +51,7 @@ DiscordRichPresence.updatePresence({
   largeImageKey: 'large',
   instance: true,
   });
-  console.log("- DiscordRichPresence - Enabled");
+  console.log("- DiscordRichPresence - Enabled")
   app.whenReady().then(() => {
     createWindow();
   app.on("activate", function () {
@@ -136,7 +136,7 @@ DiscordRichPresence.updatePresence({
       evt.sender.send('err', 'Tokens expirés');
     });
 });
-  ipcMain.on('LoginMicrosoft', (evt, data) => {
+ipcMain.on('LoginMicrosoft', (evt, data) => {
     msmc.setFetch(fetch);
     msmc.fastLaunch("electron", (update) => {
       console.log(update);
@@ -145,6 +145,7 @@ DiscordRichPresence.updatePresence({
         evt.sender.send("err", "Erreur lors de la connexion") 
         return;
       };
+      console.log(call)
       var accessToken = call.access_token;
       var profile = call.profile;
       mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
@@ -153,6 +154,7 @@ DiscordRichPresence.updatePresence({
           skin:profile.skins[0].url
         };
         mainWindow.webContents.send('profile', user);
+        mainWindow.webContents.send('accessToken', accessToken);
         console.log('\nPseudo - ' + user.name + "\n");
         ipcMain.on('PlayMicrosoft', (evt, data) => {
               let OptionsMicrosoft = {
@@ -183,6 +185,15 @@ DiscordRichPresence.updatePresence({
     });
 });
   });
+  ipcMain.on('LoginMicrosoftToken', (evt, data) => {
+    msmc.getMCLC().refresh(data)
+    .then((user) => {
+      mainWindow.loadFile(path.join(__dirname, 'assets/app/html/app.html')).then(() => {
+        mainWindow.webContents.send('user', user);
+        console.log('\nPseudo - ' + user.name + "\n");
+      });
+    }).catch((err) => {console.log(err)})
+});
 // Déconnexion
 ipcMain.on('logout', (evt, user) => {
   mainWindow.loadFile(path.join(__dirname, 'assets/app/html/login.html'))

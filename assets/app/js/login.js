@@ -12,6 +12,7 @@ let LoginMicrosoft = document.getElementById("LoginMicrosoft");
 let bar = new custombar.Titlebar({
   menu: null,
   backgroundColor: custombar.Color.TRANSPARENT,
+  maximizable: false
 });
 
 // Lorsque l'utilisateur clique sur le bouton Microsoft.
@@ -52,17 +53,11 @@ ipc.on("err", (event, errorMessage) => {
     }, 1200);
     LoginMojang.disabled = false;
   });
-  ipc.on("msg", (event, Message) => {
-    iziToast.info({
-      title: Message,
-      iconUrl: '../images/logo.png',
-      color: "#161616",
-      titleColor: "#faa81a",
-      iconColor: "iconColor",
-      close: false
-      });
-});
   if(localStorage.getItem('user')) {
     // Login Mojang avec les tokens.
     ipc.send('LoginMojangToken', JSON.parse(localStorage.getItem('user')));
+  };
+  if(localStorage.getItem('accessToken')) {
+    // Login Mojang avec les tokens.
+    ipc.send('LoginMicrosoftToken', JSON.parse(localStorage.getItem('accessToken')));
   };
