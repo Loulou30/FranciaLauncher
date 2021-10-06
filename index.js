@@ -194,10 +194,14 @@ ipcMain.on('LoginMicrosoft', (evt, data) => {
       });
     }).catch((err) => {console.log(err)})
 });
-// Déconnexion
+// Déconnexion.
 ipcMain.on('logout', (evt, user) => {
   mainWindow.loadFile(path.join(__dirname, 'assets/app/html/login.html'))
     .catch(() => {
       evt.sender.send('err', 'Erreur lors de la déconnexion');
     });
   });
+
+ipcMain.on('OpenSettingsPage', (evt, user) => {
+  mainWindow.loadFile(path.join(__dirname, 'assets/app/html/settings.html'));
+});

@@ -7,6 +7,7 @@ const shell = require("electron").shell;
 let skin = document.getElementById("skin");
 let deco = document.getElementById("deco");
 let playbtn = document.getElementById("play");
+let settings = document.getElementById("options");
 // Title Bar.
 let bar = new custombar.Titlebar({
   menu: null,
@@ -19,6 +20,9 @@ deco.addEventListener("click", () => {
   localStorage.clear()
   deco.disabled = true;
   ipc.send("logout", JSON.parse(localStorage.getItem("user")));
+});
+settings.addEventListener("click", () => {
+  ipc.send("OpenSettingsPage");
 });
 
 // Quand l'utilisateur s'est connecté avec un compte Microsoft.
