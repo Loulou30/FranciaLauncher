@@ -61,7 +61,8 @@ DiscordRichPresence.updatePresence({
   app.on("window-all-closed", function () {
     if(process.platform !== "darwin") app.quit();
   });
-  // Login Mojang avec les Identifiants
+
+  // Login Mojang avec les Identifiants.
   ipcMain.on('LoginMojang',(evt,data) => {
     Authenticator.getAuth(data.user, data.pass)
     .then((user) => {
@@ -204,4 +205,7 @@ ipcMain.on('logout', (evt, user) => {
 
 ipcMain.on('OpenSettingsPage', (evt, user) => {
   mainWindow.loadFile(path.join(__dirname, 'assets/app/html/settings.html'));
+});
+ipcMain.on('SavedSettings', (evt, user) => {
+  mainWindow.loadFile(path.join(__dirname, 'assets/app/html/login.html'));
 });

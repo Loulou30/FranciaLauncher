@@ -1,0 +1,111 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+
+body {
+    font-family: Arial;
+    background: #161616;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+}
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+.settings-box{
+    width: 300px;
+    height: 140px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    border-radius: 20px;
+    color:white;
+    background: #191919;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.ramtext {
+    position: absolute;
+    top: 25px;
+    font-size: 20px;
+    left: 30px;
+    background-color: #161616;
+    text-align: center;
+    line-height: 45px;
+    height: 45px;
+    width: 210px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.logo {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    left: 120px;
+}
+#ram {
+    position: absolute;
+    left: 30px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: #161616;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    color: white;
+    font-weight: bold;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    width: 210px;
+}
+select#ram:hover {
+    background: #191919;
+}
+select#ram {
+    top: 100px;
+    height: 35px;
+}
+#version {
+    position: absolute;
+    left: 30px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    color: white;
+    background: #161616;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    font-weight: bold;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+    width: 210px;
+}
+select#version:hover {
+    background: #191919;
+}
+select#version {
+    top: 150px;
+    height: 35px;
+}
+.button {
+    background: #faa81a;
+    color: white;
+    border: 0;
+    outline: 0;
+    position: absolute;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 25%;
+    padding: 10px;
+    left: 250px;
+    top: 150px;
+    font-weight: bold;
+    }
+.button:hover {
+    background: #ebb559;
+}
