@@ -1,23 +1,12 @@
- <h1 align="center">Spectre Launcher</h1>
+ <h1 align="center">Launcher de Francia</h1>
 
 ## Introduction
 
-Bienvenue sur le **GitHub** du **Spectre Launcher** ! Vous pouvez tout de même l'utiliser pour créer votre propre Launcher.
+Bienvenue sur le **fork** du **Spectre Launcher** ! Toute réglementation sur <a>https://github.com/L-C-B/SpectreLauncher</a> est valable ici.
 J'ai conçu ce Launcher avec [Electron](https://www.electronjs.org/). La version actuelle du Launcher est la **v2.0.1**.
 
 ## Usage
 
-Ce **GitHub** a pour but d'aider les personnes qui sont actuellement en train d'essayer de créer leurs propres Launcher. En effet, vous pourrez utiliser le code du Spectre Launcher.
-Mais, il est interdit de copier & coller le code du Launcher et de se l'approprier, si vous pouvez modifier le Launcher pour créer le vôtre. Si vous voulez en savoir plus, contactez-moi sur [Discord](https://discord.gg/) `LaCarotteBleue#8874`.
+Téléchargez le fichier qui correspond à votre OS dans les realeases.
 
-## Développement 
-
-*Pour commencer à développer & modifier le Launcher, suivez ces étapes :*
-
-```
-> git clone https://github.com/L-C-B/SpectreLauncher.git
-> cd SpectreLauncher
-> npm install
-```
-
-Voilà ! Vous pouvez maintenant commencer à modifier le Launcher !
+Any help ==> https://discord.gg/ds5qtVErcN
