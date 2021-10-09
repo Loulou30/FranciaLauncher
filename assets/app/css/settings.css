@@ -57,12 +57,13 @@ body {
     outline: none;
     border-radius: 10px;
     background: #161616;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 10);
     color: white;
     font-weight: bold;
     margin-bottom: 2em;
     text-transform: uppercase;
     width: 210px;
+    transition: all 0.3s ease-out;
 }
 select#ram:hover {
     background: #191919;
@@ -79,11 +80,12 @@ select#ram {
     border-radius: 10px;
     color: white;
     background: #161616;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 10);
     font-weight: bold;
     margin-bottom: 2em;
     text-transform: uppercase;
     width: 210px;
+    transition: all 0.3s ease-out;
 }
 select#version:hover {
     background: #191919;
